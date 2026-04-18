@@ -2,39 +2,32 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>云音·音乐站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>云音·乐</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background: radial-gradient(circle at 20% 30%, #0f121c, #03060c);
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             color: #eef4ff;
             min-height: 100vh;
             padding-bottom: 90px;
         }
-
-        /* 毛玻璃效果容器 */
         .glass {
             background: rgba(20, 25, 40, 0.65);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 28px;
         }
-
-        /* 主容器 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px 24px;
         }
-
-        /* 头部 */
         .header {
             display: flex;
             justify-content: space-between;
@@ -50,7 +43,6 @@
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            letter-spacing: -0.02em;
         }
         .search-box {
             flex: 1;
@@ -82,22 +74,14 @@
             border-radius: 40px;
             cursor: pointer;
             font-weight: 500;
-            transition: 0.2s;
         }
-        .search-box button:hover {
-            background: #5a85ff;
-            transform: scale(0.98);
-        }
-
-        /* 热门推荐区域 */
         .section-title {
             font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 18px;
-            letter-spacing: -0.3px;
             display: flex;
-            align-items: baseline;
             justify-content: space-between;
+            align-items: baseline;
         }
         .card-grid {
             display: grid;
@@ -111,14 +95,12 @@
             border-radius: 20px;
             padding: 16px 12px;
             text-align: center;
-            transition: transform 0.2s, background 0.2s;
             cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.2s;
         }
         .rec-card:hover {
             transform: translateY(-4px);
             background: rgba(30, 36, 52, 0.8);
-            border-color: rgba(255,255,255,0.2);
         }
         .rec-cover {
             width: 100%;
@@ -139,15 +121,6 @@
         .rec-artist {
             font-size: 0.7rem;
             color: #9aaec5;
-            margin-top: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* 搜索结果区域 */
-        .results-list {
-            margin-bottom: 30px;
         }
         .result-item {
             background: rgba(20, 25, 40, 0.5);
@@ -159,7 +132,6 @@
             align-items: center;
             gap: 14px;
             cursor: pointer;
-            transition: 0.2s;
         }
         .result-item:hover {
             background: rgba(59,110,255,0.2);
@@ -180,8 +152,6 @@
             font-size: 0.75rem;
             color: #9aaec5;
         }
-
-        /* 底部播放条 */
         .player-bar {
             position: fixed;
             bottom: 0;
@@ -214,7 +184,6 @@
         }
         .player-title {
             font-weight: 600;
-            font-size: 0.9rem;
         }
         .player-artist {
             font-size: 0.7rem;
@@ -234,23 +203,12 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.2s;
-        }
-        .ctrl-icon:hover {
-            background: rgba(255,255,255,0.1);
         }
         .play-pause {
             background: #3b6eff;
             width: 52px;
             height: 52px;
             font-size: 1.6rem;
-        }
-        .play-pause:hover {
-            background: #5a85ff;
-            transform: scale(1.02);
         }
         .progress-area {
             flex: 2;
@@ -262,7 +220,6 @@
             background: rgba(255,255,255,0.2);
             border-radius: 4px;
             cursor: pointer;
-            margin-bottom: 6px;
         }
         .progress-fill {
             width: 0%;
@@ -275,6 +232,7 @@
             justify-content: space-between;
             font-size: 0.7rem;
             color: #8a99b0;
+            margin-top: 4px;
         }
         .volume-wrap {
             display: flex;
@@ -283,17 +241,11 @@
         }
         .volume-slider {
             width: 80px;
-            cursor: pointer;
         }
         @media (max-width: 700px) {
             .player-inner { flex-wrap: wrap; justify-content: center; }
             .progress-area { width: 100%; order: 1; margin-top: 6px; }
-            .player-controls { order: 0; }
         }
-        /* 滚动条 */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: #3b6eff; border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -302,29 +254,23 @@
     <div class="header">
         <div class="logo">🎵 云音 · 乐</div>
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="搜索歌曲、艺术家..." autocomplete="off">
+            <input type="text" id="searchInput" placeholder="搜索歌曲、艺术家...">
             <button id="searchBtn">搜索</button>
         </div>
     </div>
 
-    <!-- 热门推荐区域（预置歌单/推荐歌曲） -->
     <div class="section-title">
         <span>🔥 热门推荐</span>
         <span style="font-size: 0.75rem; cursor: pointer;" id="refreshRecommend">换一批 ↻</span>
     </div>
-    <div class="card-grid" id="recommendGrid">
-        <!-- 动态加载推荐卡片 -->
-        <div class="rec-card">加载中...</div>
-    </div>
+    <div class="card-grid" id="recommendGrid"></div>
 
-    <!-- 搜索结果区域（默认隐藏） -->
     <div id="searchResults" style="display: none;">
         <div class="section-title">📄 搜索结果</div>
-        <div id="resultsList" class="results-list"></div>
+        <div id="resultsList"></div>
     </div>
 </div>
 
-<!-- 底部播放条 -->
 <div class="player-bar">
     <div class="player-inner">
         <div class="player-cover" id="playerCover"></div>
@@ -353,29 +299,16 @@
     </div>
 </div>
 
-<audio id="audio" preload="auto"></audio>
+<audio id="audio"></audio>
 
 <script>
     // ======================== 配置 ========================
-    const API_BASE = 'https://freemusic-git-master-freelancer8.vercel.app';   // 你的 API 域名
-    // 默认推荐歌单 ID（可自行修改）
+    // 请修改为你实际的 API 域名，不要带末尾斜杠
+    const API_BASE = 'https://freemusic-git-master-freelancer8.vercel.app';   // 改成你的 API 地址
     const DEFAULT_PLAYLIST_ID = '5185298264';
-    // 备用推荐歌曲列表（如果歌单加载失败）
-    const fallbackSongs = [
-        { id: 142312, name: '理想三旬', artist: '陈鸿宇', cover: '' },
-        { id: 186016, name: '起风了', artist: '买辣椒也用券', cover: '' },
-        { id: 133034, name: '消愁', artist: '毛不易', cover: '' },
-        { id: 278671, name: '可能否', artist: '木小雅', cover: '' }
-    ];
-
-    // 全局状态
-    let currentPlaylist = [];     // 当前播放列表 [{ id, name, artist, cover, url }]
-    let currentIndex = 0;
-    let isPlaying = false;
-    let audio = document.getElementById('audio');
-    let recommendLoaded = false;
 
     // DOM 元素
+    const audio = document.getElementById('audio');
     const playBtn = document.getElementById('playBtn');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -394,7 +327,11 @@
     const recommendGrid = document.getElementById('recommendGrid');
     const refreshRecommendBtn = document.getElementById('refreshRecommend');
 
-    // ========== 工具函数 ==========
+    let currentPlaylist = [];
+    let currentIndex = 0;
+    let isPlaying = false;
+
+    // 工具函数
     function formatTime(sec) {
         if (isNaN(sec)) return '0:00';
         const mins = Math.floor(sec / 60);
@@ -412,12 +349,10 @@
         });
     }
 
-    // 从 API 获取歌曲播放 URL（网易云外链）
+    // 获取歌曲播放 URL
     async function getSongUrl(songId) {
-        // 使用代理接口获取歌曲详情（包含 url）
-        const url = `${API_BASE}/song/url?id=${songId}`;
         try {
-            const res = await fetch(url);
+            const res = await fetch(`${API_BASE}/song/url?id=${songId}`);
             const data = await res.json();
             if (data.code === 200 && data.data && data.data[0] && data.data[0].url) {
                 return data.data[0].url;
@@ -426,11 +361,10 @@
         return `https://music.163.com/song/media/outer/url?id=${songId}.mp3`;
     }
 
-    // 获取歌曲详情（包括封面、歌手）
+    // 获取歌曲详情
     async function getSongDetail(songId) {
-        const url = `${API_BASE}/song/detail?ids=${songId}`;
         try {
-            const res = await fetch(url);
+            const res = await fetch(`${API_BASE}/song/detail?ids=${songId}`);
             const data = await res.json();
             if (data.code === 200 && data.songs && data.songs[0]) {
                 const s = data.songs[0];
@@ -448,9 +382,8 @@
 
     // 搜索歌曲
     async function searchSongs(keyword) {
-        const url = `${API_BASE}/search?keywords=${encodeURIComponent(keyword)}&type=1&limit=30`;
         try {
-            const res = await fetch(url);
+            const res = await fetch(`${API_BASE}/search?keywords=${encodeURIComponent(keyword)}&type=1&limit=30`);
             const data = await res.json();
             if (data.code === 200 && data.result && data.result.songs) {
                 const songs = data.result.songs;
@@ -466,15 +399,16 @@
                 }
                 return detailed;
             }
-        } catch(e) {}
+        } catch(e) {
+            console.error('搜索失败', e);
+        }
         return [];
     }
 
-    // 加载歌单（用于推荐）
+    // 加载歌单
     async function loadPlaylist(playlistId) {
-        const url = `${API_BASE}/playlist/detail?id=${playlistId}`;
         try {
-            const res = await fetch(url);
+            const res = await fetch(`${API_BASE}/playlist/detail?id=${playlistId}`);
             const data = await res.json();
             if (data.code === 200 && data.playlist && data.playlist.tracks) {
                 const tracks = data.playlist.tracks.slice(0, 12);
@@ -494,21 +428,20 @@
         return [];
     }
 
-    // 显示推荐卡片（热门推荐）
+    // 渲染推荐
     async function renderRecommend() {
         recommendGrid.innerHTML = '<div class="rec-card">加载中...</div>';
         let songs = await loadPlaylist(DEFAULT_PLAYLIST_ID);
         if (!songs.length) {
-            // 使用备用数据
+            // 备用
             songs = [];
-            for (let f of fallbackSongs) {
-                let detail = await getSongDetail(f.id);
+            for (let id of [142312, 186016, 133034, 278671]) {
+                let detail = await getSongDetail(id);
                 if (detail) songs.push(detail);
-                else songs.push({ ...f, url: '' });
             }
         }
-        if (songs.length === 0) {
-            recommendGrid.innerHTML = '<div class="rec-card">暂无推荐，请稍后重试</div>';
+        if (!songs.length) {
+            recommendGrid.innerHTML = '<div class="rec-card">暂无推荐</div>';
             return;
         }
         recommendGrid.innerHTML = '';
@@ -521,17 +454,17 @@
                 <div class="rec-artist">${escapeHtml(song.artist)}</div>
             `;
             card.addEventListener('click', () => {
-                // 点击推荐卡片，播放该歌曲并创建临时播放列表
                 currentPlaylist = [song];
                 currentIndex = 0;
-                playSong(currentPlaylist[currentIndex]);
+                playCurrent();
             });
             recommendGrid.appendChild(card);
         });
     }
 
-    // 播放指定歌曲
-    async function playSong(song) {
+    async function playCurrent() {
+        if (!currentPlaylist.length) return;
+        const song = currentPlaylist[currentIndex];
         if (!song.url) {
             song.url = await getSongUrl(song.id);
         }
@@ -541,20 +474,12 @@
         playerArtist.innerText = song.artist;
         if (song.cover) playerCover.style.backgroundImage = `url(${song.cover})`;
         else playerCover.style.backgroundImage = '';
-        audio.play().then(() => {
-            updatePlayPauseIcon(true);
-        }).catch(e => console.log('播放失败', e));
+        audio.play().catch(e => console.log('播放失败', e));
     }
 
     function updatePlayPauseIcon(playing) {
         playBtn.innerHTML = playing ? '⏸' : '▶';
         isPlaying = playing;
-    }
-
-    // 播放当前索引的歌曲
-    function playCurrent() {
-        if (!currentPlaylist.length) return;
-        playSong(currentPlaylist[currentIndex]);
     }
 
     function nextTrack() {
@@ -569,17 +494,14 @@
         playCurrent();
     }
 
-    // 更新进度条
     function updateProgress() {
         if (audio.duration) {
-            const percent = (audio.currentTime / audio.duration) * 100;
-            progressFill.style.width = percent + '%';
+            progressFill.style.width = (audio.currentTime / audio.duration) * 100 + '%';
             currentTimeSpan.innerText = formatTime(audio.currentTime);
             durationSpan.innerText = formatTime(audio.duration);
         }
     }
 
-    // 搜索逻辑
     async function performSearch() {
         const keyword = searchInput.value.trim();
         if (!keyword) return;
@@ -602,7 +524,6 @@
                 </div>
             `;
             item.addEventListener('click', () => {
-                // 点击搜索结果，将当前播放列表设置为该歌曲，并播放
                 currentPlaylist = [song];
                 currentIndex = 0;
                 playCurrent();
@@ -612,7 +533,7 @@
         });
     }
 
-    // 初始化事件
+    // 事件绑定
     function bindEvents() {
         playBtn.addEventListener('click', () => {
             if (audio.paused) {
@@ -643,16 +564,15 @@
         refreshRecommendBtn.addEventListener('click', renderRecommend);
     }
 
-    // 启动时加载推荐，并设置一个默认播放列表（可选）
     async function init() {
         bindEvents();
         await renderRecommend();
-        // 预加载一个默认播放列表（推荐的第一首）
+        // 预加载一个默认播放列表（可选）
         let defaultSongs = await loadPlaylist(DEFAULT_PLAYLIST_ID);
         if (defaultSongs.length) {
             currentPlaylist = defaultSongs;
             currentIndex = 0;
-            // 不自动播放，等待用户点击
+            // 不自动播放
         }
         audio.volume = volumeSlider.value;
     }
