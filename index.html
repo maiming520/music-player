@@ -433,8 +433,8 @@
 
     // ========== 获取歌曲播放地址（使用代理接口） ==========
     function getSongUrl(songId) {
-        return `${API_BASE}/song/stream?id=${songId}`;
-    }
+    return `https://api.injahow.cn/meting/?server=netease&type=song&id=${songId}`;
+}
 
     // ========== 获取歌曲详情（封面、歌手） ==========
     async function getSongDetail(songId) {
